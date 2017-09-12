@@ -1,0 +1,44 @@
+span {
+  font-family: 'Source Code Pro', monospace;
+  text-transform: uppercase;
+}
+
+.row {
+    line-height: 12px;
+}
+
+.w1 {
+	font-weight : 100;
+}
+
+.w2 {
+	font-weight : 200;
+}
+
+.w3 {
+	font-weight : 300;
+}
+
+.w4 {
+	font-weight : 400;
+}
+
+.w5 {
+	font-weight : 500;
+}
+
+.w6 {
+	font-weight : 600;
+}
+
+.w7 {
+	font-weight : 700;
+}
+
+.w8 {
+	font-weight : 800;
+}
+
+.w9 {
+	font-weight : 900;
+}
