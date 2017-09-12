@@ -7,36 +7,16 @@ var img = new Image();
 
 img.onload = function() {
 
-	// Set canvas
-	var c = document.getElementById('canvas');
-	c.width  = img.width;
-	c.height = img.height;
-
-	// Context
-	var ctx = c.getContext('2d');
-	ctx.drawImage(img,0,0);
-	var imgData = ctx.getImageData(0,0,img.width,img.height);
-
 	// Matrix
 	var pixels = [];
 
-	// invert colors
-	for (var i=0;i<imgData.data.length;i+=4) {
-		var w = img.width, h = img.height, grayscalecolor, r,g,b,
-		//
-		x = parseInt((i / 4) / w), y = (i / 4) % w;
-
-	  r = imgData.data[i];
-	  g = imgData.data[i+1];
-	  b = imgData.data[i+2];
-	  // alpha mask
-	 	//imgData.data[i+3]=255;
+	getData(img, function(data, x, y) {
+		var grayscalecolor, r = data[0], g = data[1], b = data[2];
 		grayscalecolor = 255 - ((r + g + b) / 3);
 		// Create a row if needed.
 		pixels[x] = pixels[x] || [];
-		pixels[x][y] = parseInt(grayscalecolor * 9 / 255) + 1;
-		//console.log(x + ',' + y + ':' + grayscalecolor);
-	}
+		pixels[x][y] = data;
+	});
 
 	var ctn = document.getElementById('container');
 	var char = 0;
@@ -45,11 +25,12 @@ img.onload = function() {
 		var rowEl = document.createElement('div');
     rowEl.className = 'row';
 		for (var j = 0; j < row.length; j++) {
-			var value = row[j];
+			var value = asLevel(greyscale(row[j]));
 			// Generates text cells
 			var cell = document.createElement('span');
 			cell.className = 'w' + value;
 			cell.innerHTML = text.charAt(char % text.length);
+			cell.style = 'color : rgb(' + row[j][0] + ',' + row[j][1] + ',' + row[j][2] + ')';
 			rowEl.appendChild(cell);
 			char++;
 			//console.log(value);
@@ -60,6 +41,40 @@ img.onload = function() {
 	console.log(pixels);
 	// ctx.putImageData(imgData,0,0);
 }
+
+function getData(img, cb) {
+	var w = img.width, h = img.height;
+
+	var c = document.createElement('canvas');
+	c.width  = w;
+	c.height = h;
+
+	// Context
+	var ctx = c.getContext('2d');
+	ctx.drawImage(img,0,0);
+	var imgData = ctx.getImageData(0,0,w,h);
+
+	// Matrix
+	var pixels = [];
+
+	// invert colors
+	for (var i=0;i<imgData.data.length;i+=4) {
+		var data = imgData.data.slice(i, i + 4),
+		x = parseInt((i / 4) / w), y = (i / 4) % w;
+		cb(data, x, y);
+	}
+}
+
+function greyscale(data) {
+	var grayscalecolor, r = data[0], g = data[1], b = data[2];
+	grayscalecolor = 255 - ((r + g + b) / 3);
+	return grayscalecolor;
+}
+
+function asLevel(color) {
+	return parseInt(color * 9 / 255) + 1;
+}
+
 
 //Loads the image
 img.src = 'dictator.jpg';
