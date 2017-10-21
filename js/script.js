@@ -63,8 +63,9 @@ function renderCell1(cell, data, char) {
 	var opacity = "";
 	var style = '';
 	if (char === ' ') {
-		char = "\u25A0";
-		opacity = "0.33"; // Consider the whitespaces in letters to be around 66%, and account for this when replacing spaces with squares.
+		// char = "\u25A0"; // Black square
+		char = "\u25CF"; // Black circle
+		opacity = "0.6"; // Consider the whitespaces in letters to be around 40%, and account for this when replacing spaces with squares.
 		//cell.style = 'font-size : 1px;';
 	} //else {
 	cell.innerHTML = char;
