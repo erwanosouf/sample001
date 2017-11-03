@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg xmlns="http://www.w3.org/2000/svg" width="3" height="3"
+   viewBox="0 0 3 3"
+   version="1.1" >
+    <rect style="fill:#000000;" width="1" height="1" x="0" y="0" />
+    <rect style="fill:#ffffff" width="1" height="1" x="1"  y="0" />
+    <rect style="fill:#888888" width="1" height="1" x="2"  y="0" />
+    <rect style="fill:#ff0000;" width="1" height="1" x="0" y="1" />
+    <rect style="fill:#00ff00" width="1" height="1" x="1"  y="1" />
+    <rect style="fill:#0000ff" width="1" height="1" x="2"  y="1" />
+    <rect style="fill:#ffff00;" width="1" height="1" x="0" y="2" />
+    <rect style="fill:#00ffff" width="1" height="1" x="1"  y="2" />
+    <rect style="fill:#ff00ff" width="1" height="1" x="2"  y="2" />
+</svg>

@@ -3,6 +3,15 @@ span {
   text-transform: uppercase;
 }
 
+body {
+  display : flex;
+}
+
+#container {
+  display : inline-block;
+  margin : 0px auto;
+}
+
 .row {
     line-height: 12px;
 }
